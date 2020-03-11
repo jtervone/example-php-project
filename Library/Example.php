@@ -20,42 +20,42 @@ namespace Project;
 
 class Example
 {
-    /**
-     * Is class created
-     *
-     * @var bool
-     */
-    public $classCreated = false;
+  /**
+   * Is class created
+   *
+   * @var bool
+   */
+  public $classCreated = false;
 
-    /**
-     * Constructor of the Example class
-     */
-    public function __construct()
-    {
-        $this->classCreated = true;
+  /**
+   * Constructor of the Example class
+   */
+  public function __construct()
+  {
+    $this->classCreated = true;
+  }
+
+  /**
+   * Function which is not covered in tests
+   *
+   * @return void
+   */
+  public function thisIsNotCovered() : void
+  {
+    $this->classCreated = false;
+  }
+
+  /**
+   * Function which is partly covered in tests
+   *
+   * @return boolean Is class created
+   */
+  public function thisIsPartlyCovered() : bool
+  {
+    if ($this->classCreated === false) {
+      return true;
     }
 
-    /**
-     * Function which is not covered in tests
-     *
-     * @return void
-     */
-    public function thisIsNotCovered() : void
-    {
-        $this->classCreated = false;
-    }
-
-    /**
-     * Function which is partly covered in tests
-     *
-     * @return boolean Is class created
-     */
-    public function thisIsPartlyCovered() : bool
-    {
-        if ($this->classCreated === false) {
-            return true;
-        }
-
-        return false;
-    }
+    return false;
+  }
 }

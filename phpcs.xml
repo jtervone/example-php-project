@@ -26,6 +26,13 @@
         <exclude-pattern>*/tests/*</exclude-pattern>
     </rule>
 
+    <rule ref="Generic.WhiteSpace.ScopeIndent">
+        <properties>
+            <property name="indent" value="2"/>
+            <property name="tabIndent" value="false"/>
+        </properties>
+    </rule>
+
     <rule ref="Generic.Files.EndFileNewline" />
 
     <rule ref="Generic.Files.LineLength">

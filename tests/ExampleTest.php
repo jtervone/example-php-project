@@ -12,14 +12,14 @@ use Project\Example;
  */
 class ExampleTest extends TestCase
 {
-    public function test_it_works() : void
-    {
-        $example = new Example();
+  public function test_it_works() : void
+  {
+    $example = new Example();
 
-        $this->assertInstanceOf(Example::class, $example);
+    $this->assertInstanceOf(Example::class, $example);
 
-        $this->assertEquals(true, $example->classCreated, "actual value is not equals to expected");
+    $this->assertEquals(true, $example->classCreated, "actual value is not equals to expected");
 
-        $this->assertEquals(null, $example->thisIsPartlyCovered(), "foobarfoofowef");
-    }
+    $this->assertEquals(null, $example->thisIsPartlyCovered(), "foobarfoofowef");
+  }
 }
