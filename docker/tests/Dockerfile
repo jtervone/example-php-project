@@ -42,16 +42,20 @@ RUN apt-get update -qy && \
   php-zip \
   php-xdebug \
   php-soap \
-  php-dev
+  php-dev \
+  graphviz
 
 RUN pecl channel-update pecl.php.net
-RUN pecl install pcov uopz
 
+RUN pecl install pcov
 RUN echo "extension=pcov.so" > /etc/php/7.3/cli/conf.d/20-pcov.ini
-# Note: The uopz extension ignores exit calls and may not work with all Composer commands. Disabling it when using Composer is recommended.
-RUN echo "extension=uopz.so" > /etc/php/7.3/cli/conf.d/20-uopz.ini
 
-COPY ./etc/composer/php.ini /etc/php/7.3/cli/php.ini
-COPY ./entrypoint.composer.sh /usr/local/bin/entrypoint.sh
+# Note: The uopz extension ignores exit calls and may not work with all Composer commands.
+# Disabling it when using Composer is recommended.
+# RUN pecl install uopz
+# RUN echo "extension=uopz.so" > /etc/php/7.3/cli/conf.d/20-uopz.ini
+
+COPY ./conf/php.ini /etc/php/7.3/cli/php.ini
+COPY ./entrypoint.sh /usr/local/bin/entrypoint.sh
 
 ENTRYPOINT [ "/usr/local/bin/entrypoint.sh" ]

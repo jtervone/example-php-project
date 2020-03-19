@@ -14,6 +14,6 @@ RUN apt-get update -qy && \
 
 EXPOSE 9000
 
-COPY ./entrypoint.phpfpm.sh /usr/local/bin/entrypoint.sh
+COPY ./entrypoint.sh /usr/local/bin/entrypoint.sh
 
 ENTRYPOINT [ "/usr/local/bin/entrypoint.sh" ]

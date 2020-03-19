@@ -1,16 +1,16 @@
 version: '3.1'
 
 services:
-  web:
+  nginx:
     container_name: nginx
     image: project.nginx
     depends_on:
       - phpfpm
     volumes:
-      - "./docker/etc/nginx/default.conf:/etc/nginx/sites-enabled/default"
-      - "./docker/etc/nginx/fastcgi-php.conf:/etc/nginx/fastcgi-php.conf"
-      - "./docker/etc/example.local.crt:/etc/ssl/certs/example.local.crt"
-      - "./docker/etc/example.local.key:/etc/ssl/private/example.local.key"
+      - "./docker/nginx/conf/default.conf:/etc/nginx/sites-enabled/default"
+      - "./docker/nginx/conf/fastcgi-php.conf:/etc/nginx/fastcgi-php.conf"
+      - "./docker/nginx/conf/example.local.crt:/etc/ssl/certs/example.local.crt"
+      - "./docker/nginx/conf/example.local.key:/etc/ssl/private/example.local.key"
       - "./:/var/www/html"
     ports:
       - "8080:80"
@@ -18,9 +18,7 @@ services:
     environment:
       - NGINX_HOST=${NGINX_HOST}
     restart: always
-    build:
-      context: ./docker
-      dockerfile: ./Dockerfile.nginx
+    build: ./docker/nginx
     networks:
       - local
 
@@ -32,11 +30,9 @@ services:
       - tests
     restart: always
     volumes:
-      - "./docker/etc/php-fpm/www.conf:/etc/php/7.3/fpm/pool.d/www.conf"
+      - "./docker/phpfpm/conf/www.conf:/etc/php/7.3/fpm/pool.d/www.conf"
       - "./:/var/www/html"
-    build:
-      context: ./docker
-      dockerfile: ./Dockerfile.phpfpm
+    build: ./docker/phpfpm
     networks:
       - local
 
@@ -46,9 +42,7 @@ services:
     volumes:
       - "./:/app"
       - project-tmp:/var/project/tmp
-    build:
-      context: ./docker
-      dockerfile: ./Dockerfile.composer
+    build: ./docker/composer
 
   tests:
     container_name: tests
@@ -58,9 +52,7 @@ services:
     volumes:
       - "./:/app"
       - project-tmp:/var/project/tmp
-    build:
-      context: ./docker
-      dockerfile: ./Dockerfile.tests
+    build: ./docker/tests
 
 networks:
   local:
