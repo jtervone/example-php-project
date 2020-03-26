@@ -2,7 +2,6 @@ version: '3.1'
 
 services:
   nginx:
-    container_name: nginx
     image: project.nginx
     depends_on:
       - phpfpm
@@ -23,7 +22,6 @@ services:
       - local
 
   phpfpm:
-    container_name: phpfpm
     image: project.phpfpm
     depends_on:
       - composer
@@ -37,7 +35,6 @@ services:
       - local
 
   composer:
-    container_name: composer
     image: project.composer
     volumes:
       - "./:/app"
@@ -45,7 +42,6 @@ services:
     build: ./docker/composer
 
   tests:
-    container_name: tests
     image: project.tests
     depends_on:
       - composer

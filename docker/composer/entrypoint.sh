@@ -12,4 +12,4 @@ mv composer.phar /usr/local/bin/composer
 cd /app
 composer install
 
-echo `date +%m-%d-%Y` > /var/project/tmp/docker-composer-ready
+echo `date +%Y-%m-%d` > /var/project/tmp/docker-composer-ready
