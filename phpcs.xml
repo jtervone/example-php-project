@@ -26,6 +26,12 @@
         <exclude-pattern>*/tests/*</exclude-pattern>
     </rule>
 
+    <rule ref="PSR2.Methods.FunctionCallSignature">
+        <properties>
+            <property name="indent" value="2"/>
+        </properties>
+    </rule>
+
     <rule ref="Generic.WhiteSpace.ScopeIndent">
         <properties>
             <property name="indent" value="2"/>
